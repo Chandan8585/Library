@@ -21,12 +21,13 @@
     </div>
     <div class="form-group">
         <label for="number-of-pages">Number of Pages</label>
-        <input type="text" class="form-control" id="number-of-pages"/>
+        <input type="number" class="form-control" id="number-of-pages"/>
     </div>
     <div class="form-group">
         
-        <label for="Book-read" class="read">Book Read</label>   
-        <input type="checkbox" class="read"> 
+        <label for="Book-read" class="read">Book Read</label>
+        <small>Mark the checkbox if you have read the book</small>   
+        <input type="checkbox" class="read">
     </div>
 
     <button id="submit-btn" class="btn btn-success">ADD BOOK</button>          
@@ -40,8 +41,50 @@
             <th>Book Read or Not</th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody id="book-list"></tbody>
     </table>
+    <script>
+        const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const numberOfPages = document.querySelector("#number-of-pages");
+const addBook = document.querySelector("#submit-btn");
+const bookList = document.querySelector("#book-list");
+const reading = document.querySelector(".read");
+//   reading.checked = true;
+
+addBook.addEventListener("click", function(){
+    if(titleInput.value=="" && 
+       authorInput.value == "" && 
+       numberOfPages== ""){
+        alert("Enter any Input");
+       }
+    else{
+        const bookListRow = document.createElement("tr");
+        const newTitle = document.createElement("th");
+        newTitle.innerHTML = titleInput.value;
+        bookList.appendChild(newTitle);
+        const newAuthor = document.createElement("th");
+        newAuthor.innerHTML = authorInput.value;
+        bookList.appendChild(newAuthor);
+        const newNumberOfPages = document.createElement("th");
+        newNumberOfPages.innerHTML = numberOfPages.value;
+        bookList.appendChild(newNumberOfPages);
+       const newReading = document.createElement("th");
+       newReading.innerHTML = checking();
+       bookList.appendChild(newReading);
+            }
+        })
+    
+
+function checking(){
+if(reading.checked){
+    return "Completed";
+}
+else{
+return "not completed";
+}
+}
+    </script>
 </body>
-<script src="script.js"></script>
+
 </html>
